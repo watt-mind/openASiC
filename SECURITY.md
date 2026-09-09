@@ -3,9 +3,9 @@
 ## Reporting
 
 Do not report vulnerabilities in public issues or attach real documents.
-Once the repository is published and private vulnerability reporting is enabled,
-use [GitHub private reporting][advisory]. Until then, request a private reporting
-channel from the maintainer without disclosing vulnerability details publicly.
+Use [GitHub private reporting][advisory], which is enabled for this repository.
+If it is unavailable, request a private reporting channel from the maintainer
+without disclosing vulnerability details publicly.
 Describe the affected commit and a synthetic reproducer. Never include personal
 information, credentials, private keys, or real signing material.
 

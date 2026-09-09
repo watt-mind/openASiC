@@ -1,16 +1,15 @@
 # Factory and runner setup
 
 openASiC includes instructions for an explicitly launched master orchestrator.
-No remote repository, tracker project, or host registration is provisioned by
-this scaffold.
+The public repository is `watt-mind/openASiC`. Private tracker routing and
+host registration are maintained outside Git.
 The repository includes portable instructions and Factory configuration;
 each runner still needs its own checkout, tools, credentials and private
 registry entry. A local setup does not provision another machine.
 
 ## Fresh checkout
 
-After publication, use the `develop` branch of `watt-mind/openASiC`.
-For this local scaffold, use the checkout root:
+Use the `develop` branch of `watt-mind/openASiC`. From the checkout root:
 
 ```sh
 python3 scripts/prepare-orchestrator.py

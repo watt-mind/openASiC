@@ -2,8 +2,8 @@
 
 There are no published releases. Both crates use `publish = false`.
 Development targets `develop`; `master` is reserved for reviewed stable releases.
-Scaffolding does not provision GitHub, branch protection, registry publishing,
-release credentials, or distribution workflows.
+GitHub CI and branch protection provide development gates. Registry publishing,
+release credentials, and distribution workflows remain unconfigured.
 
 Before a first release, define supported ASiC profiles, stable CLI/JSON and exit
 contracts, platform support, dependency licences, reproducible release checks,

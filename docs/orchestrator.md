@@ -39,6 +39,16 @@ never exceed host concurrency. Workers never merge. Give each the complete
 issue, exact worktree, owned paths, checks, boundaries, and instructions that
 others share the codebase: preserve their changes and do not revert them.
 
+Use the installed skill's worker-model routing where available. Reserve capable
+implementation and independent review agents for substantive work; use bounded
+read-only exploration for specific questions. Do not spawn agents only to wait
+for CI. Respect host concurrency and keep heavy compilation serial if needed.
+
+Workers heartbeat the private tracker at each phase change and at least every
+20 minutes. On a blocker, preserve work, identify the exact missing evidence or
+decision, and update the tracker state; never leave stalled work In Progress.
+The coordinator rechecks dependencies and ownership before refilling a slot.
+
 Separate follow-ups into private Triage issues. Do not expand scope to refactor
 openSzigno, implement KRX, or add correspondence workflows. No service accounts,
 provider onboarding, releases, or external notifications are implied.
@@ -59,16 +69,52 @@ performed. Keep private issue mappings in the tracker. Public commits and PRs
 must not include private tracker identifiers, links, or maintainer-local paths.
 Use Conventional Commits and PRs targeting `develop`.
 
+Before moving a ticket to `In Review`, post a private structured handoff:
+
+```text
+## Handoff
+- PR: <public PR URL>
+- Verification: <exact ticket command> — pass, <result summary>
+- UX critique: required — SHIP | skipped — <specific reason>
+- Files: <count changed>, all within Owned Paths; explain any exception
+- Risks: <review priorities or none known>
+```
+
+Include acceptance evidence and the reviewed head commit. Apply the review
+state and `ai:needs-review`, removing `ai:in-progress`. A PR is not Done.
+Keep this handoff in the private tracker, not in public GitHub comments.
+
+For a materially changed user flow, request an independent UX assessment after
+verification with the exact worktree and launch command. Resolve in-scope
+recovery/usability findings. Record a justified skip for research-only work.
+
 Require an independent reviewer with the issue, owned paths, complete diff,
 and verification evidence. Act on MERGE, FIX, or ESCALATE findings. Wait for all
 applicable CI at the reviewed commit, resolve conflicts, and re-review changes.
 Stop after two unsuccessful fix rounds with a concrete explanation.
+
+Use `factory-merge-reviewer` when available, otherwise a separate read-only
+review agent. Green CI never substitutes for reviewing the complete diff.
+Wait on the actual workflow using `gh run watch --exit-status`. After failure,
+delegate minimal log diagnosis to `factory-ci-doctor` or a read-only specialist;
+classify ticket, environment, or transient failure before deciding to retry.
+New commits require fresh check evidence and review of the changed diff.
 
 Only the coordinator merges, serially, within the session's authorization.
 Recheck the reviewed commit, base, CI, and ownership. Never bypass protection.
 Wait for post-merge `develop` CI before marking Done. `master`, releases,
 credentials, destructive actions, and security-boundary changes need explicit
 human review. No deployment smoke check exists for this scaffold.
+
+Require all applicable CI and Security checks at the reviewed head, including
+PR-only hygiene. Factory's eight-check CI fallback covers unconditional push
+jobs only; it does not replace the full PR gate. Conditional skipped jobs need
+an explicit non-applicable workflow condition, not an assumption of success.
+
+After each merge, wait for CI and Security on the resulting `develop` commit.
+If either fails, stop further merges immediately, delegate diagnosis, and
+prepare a scoped reviewed fix before resuming. Never mark a red merge Done or
+discard another contributor's work while recovering.
 
 ## Checkpoint and stop
 

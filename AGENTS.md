@@ -63,6 +63,7 @@ adding fixtures. Do not copy LGPL implementation code into MIT sources.
 
 For an explicitly requested orchestration run, read
 [the orchestrator instructions](docs/orchestrator.md) and
-[runner setup](docs/factory.md). No tracker registration or runnable ticket is
-created by this scaffold. Host routing stays private; manual orchestration is
-opt-in. Scaffolding is not permission to launch workers or unattended dispatch.
+[runner setup](docs/factory.md). Resolve private host routing and live ticket
+readiness before claims; the roadmap is not a dispatch queue. Manual
+orchestration is opt-in. Scaffolding is not permission to launch workers or
+unattended dispatch.
