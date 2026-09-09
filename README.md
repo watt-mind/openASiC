@@ -75,3 +75,18 @@ Pull requests target `develop`; `master` is reserved for stable releases.
 See [contributing](CONTRIBUTING.md), [security](SECURITY.md), and the
 [documentation index](docs/index.md). The [roadmap](docs/roadmap.md) separates
 profile discovery, implementation, and independent interoperability testing.
+
+## Master orchestration
+
+For an explicitly requested Claude orchestration session, prepare the ignored
+launch file from this checkout:
+
+```sh
+python3 scripts/prepare-orchestrator.py
+```
+
+Then ask Claude to read `./tmp/orchestrator.md` and begin orchestrating.
+Read [runner setup](docs/factory.md) for private host registration and tools,
+and [orchestrator instructions](docs/orchestrator.md) for claims, worker
+ownership, independent review, and merge gates. A fresh clone does not include
+private routing or credentials. Automatic dispatch remains disabled.
