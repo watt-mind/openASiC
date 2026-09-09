@@ -1,0 +1,22 @@
+[package]
+name = "openasic-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+description = "openASiC command-line interface (development scaffold)"
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "openasic"
+path = "src/main.rs"
+
+[dependencies]
+openasic-core = { path = "../openasic-core" }
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true

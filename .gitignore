@@ -1,0 +1,18 @@
+/target/
+/samples/
+/refs/
+/tmp/
+/node_modules/
+.env
+.env.*
+*.local
+*.pem
+*.key
+*.p12
+*.pfx
+/lcov.info
+/coverage/
+
+# Local Factory harness links never travel through Git.
+.claude/commands/factory-*.md
+.cursor/commands/factory-*.md
